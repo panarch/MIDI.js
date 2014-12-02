@@ -23,7 +23,7 @@ if (typeof(DOMLoader) === "undefined") var DOMLoader = {};
 
 // Add XMLHttpRequest when not available
 
-if (typeof (XMLHttpRequest) === "undefined") {
+if (typeof (window.XMLHttpRequest) === "undefined") {
 	var XMLHttpRequest;
 	(function () { // find equivalent for IE
 		var factories = [
@@ -46,7 +46,7 @@ if (typeof (XMLHttpRequest) === "undefined") {
 	})();
 }
 
-if (typeof ((new XMLHttpRequest()).responseText) === "undefined") {
+if (typeof ((new window.XMLHttpRequest()).responseText) === "undefined") {
 	// http://stackoverflow.com/questions/1919972/how-do-i-access-xhr-responsebody-for-binary-data-from-javascript-in-ie
     var IEBinaryToArray_ByteStr_Script =
     "<!-- IEBinaryToArray_ByteStr -->\r\n"+
@@ -85,7 +85,7 @@ if (typeof ((new XMLHttpRequest()).responseText) === "undefined") {
 			}) + lastChr;
 		};
 		//
-		var req = XMLHttpRequest();
+		var req = window.XMLHttpRequest();
 		req.open("GET", conf.url, true);
 		if (conf.responseType) req.responseType = conf.responseType;
 		if (conf.onerror) req.onerror = conf.onerror;
@@ -106,7 +106,7 @@ if (typeof ((new XMLHttpRequest()).responseText) === "undefined") {
 	}
 } else {
 	DOMLoader.sendRequest = function(conf) {
-		var req = new XMLHttpRequest();
+		var req = new window.XMLHttpRequest();
 		req.open(conf.data ? "POST" : "GET", conf.url, true);
 		if (req.overrideMimeType) req.overrideMimeType("text/plain; charset=x-user-defined");
 		if (conf.data) req.setRequestHeader('Content-type','application/x-www-form-urlencoded');
