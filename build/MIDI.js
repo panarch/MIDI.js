@@ -1078,7 +1078,7 @@ var startAudio = function (currentTime, fromCache) {
 	queuedTime = 0.5;
 	startTime = ctx.currentTime;
 	//
-	for (var n = 0; n < length && messages < 100; n++) {
+	for (var n = 0; n < length && messages < 20000; n++) {
 		queuedTime += data[n][1];
 		if (queuedTime < currentTime) {
 			offset = queuedTime;
@@ -1148,6 +1148,7 @@ var stopAudio = function () {
 };
 
 })();
+
 /*
 
 	DOMLoader.XMLHttp
